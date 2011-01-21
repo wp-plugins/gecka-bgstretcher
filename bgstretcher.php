@@ -4,7 +4,7 @@
 Plugin Name: Gecka BG Stretcher
 Plugin URI: http://gecka-apps.com/wordpress-plugins/geka-submenu/
 Description: Implements the bgstretcher jquery script
-Version: 0.1
+Version: 0.2
 Author: Gecka
 Author URI: http://gecka-apps.com
 Licence: GPL2
@@ -52,13 +52,15 @@ function add_streched_background ($options='') {
                         'slideShowSpeed' => 'normal',
                         'slideShow' => 'true',
                         'background' => '',
-                        'pageWrapper' => '#wrapper' );
+                        'background_cb' => null,
+                        'pageWrapper' => '#wrapper',
+                        'shuffle' => false );
     
     $options = wp_parse_args( $options, $defaults );
     extract( $options, EXTR_SKIP );
     
     /* no function level defined background */
-    if(!$background) {
+    if(!$background && !$background_cb) {
         
         $repeat = get_theme_mod( 'background_repeat', 'repeat' );
         $position = get_theme_mod( 'background_position_x', 'left' );
@@ -82,11 +84,17 @@ function _stretched_bg_cb ($options) {
 
     extract( $GLOBALS['bgstretcher_options'], EXTR_SKIP );
 
-    if( !is_array($background) ) $background = array($background);
+    if($background_cb) $background = call_user_func( $background_cb );
+
+    if( !is_array($background) && $background ) $background = array($background);
+    
+    if(!sizeof($background)) return;
     
     $_bg = array();
     foreach ($background as $bg)     
         $_bg[] = "'$bg'";
+    
+    if($shuffle) shuffle($_bg);    
     
     $background = implode(', ', $_bg);
     
