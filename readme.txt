@@ -1,9 +1,9 @@
 === Gecka BgStretcher ===
-Contributors: Laurent Dinclaux, Gecka 
-Tags: background, background stretch, image, bgstretcher, jquery
+Contributors: Gecka 
+Tags: background, background stretch, image, bgstretcher, jquery, streched background
 Requires at least: 3.0
-Tested up to: 3.0.1
-Stable tag: 0.1
+Tested up to: 3.1
+Stable tag: 0.2
 Donate link: http://gecka-apps.com/wordpress-plugins/bgstretcher/
 
 The plugin allows you to add a large image (or a set of images) to the background of your web page and will proportionally resize the image(s) to fill the entire window area.
@@ -33,6 +33,9 @@ The plugin supports all the bgStreacher features, like slideshow.
 1. Example
 
 == Changelog ==
+
+= 0.2 =  
+* News background_cb and shuffle parameters.
 
 = 0.1 =  
 * First version.
